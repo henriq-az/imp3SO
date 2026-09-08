@@ -1,0 +1,30 @@
+Script started on 2026-09-08 08:38:41-03:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="144" LINES="9"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make
+[?2004lgcc -Wall -Wextra -std=c11 -g -c scheduler.c -o scheduler.o
+[01m[Kscheduler.c:[m[K In function ‘[01m[Kmain[m[K’:
+[01m[Kscheduler.c:35:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kargc[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+   35 | int main([01;35m[Kint argc[m[K, char *argv[]) {
+      |          [01;35m[K~~~~^~~~[m[K
+gcc -Wall -Wextra -std=c11 -g -o scheduler scheduler.o
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate voo.txt[27m./scheduler rate voo.txt
+[?2004ltempo_total = 100
+num_tasks = 3
+
+ordem=0 nome=radar periodo=10 deadline=8 burst=3
+ordem=1 nome=motor periodo=20 deadline=15 burst=5
+ordem=2 nome=gps periodo=15 deadline=12 burst=4
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-08 08:38:55-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-08 08:44:12-03:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="144" LINES="9"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate voo.txt[27m./scheduler rate voo.txt
+[?2004ltempo_total = 100
+num_tasks = 2
+
+ordem=0 nome=ATT periodo=20 deadline=12 burst=8
+ordem=1 nome=NAV periodo=50 deadline=30 burst=15
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-08 08:44:26-03:00 [COMMAND_EXIT_CODE="0"]
