@@ -108,3 +108,28 @@ exit: 0
 [?2004lexit
 
 Script done on 2026-09-08 10:53:45-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-08 13:40:56-03:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="144" LINES="9"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make clean
+[?2004lrm -f scheduler.o scheduler
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make
+[?2004lgcc -Wall -Wextra -std=c11 -g -c scheduler.c -o scheduler.o
+gcc -Wall -Wextra -std=c11 -g -o scheduler scheduler.o
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make clean[6Pexit./scheduler rate voo.txt
+[?2004ltempo_total = 100
+num_tasks = 2
+
+ordem=0 nome=ATT periodo=20 deadline=12 burst=8
+ordem=1 nome=NAV periodo=50 deadline=30 burst=15
+
+Chegadas de instancias (t=0..99):
+t=0: chegou ATT (deadline_absoluto=12, burst_restante=8)
+t=0: chegou NAV (deadline_absoluto=30, burst_restante=15)
+t=20: chegou ATT (deadline_absoluto=32, burst_restante=8)
+t=40: chegou ATT (deadline_absoluto=52, burst_restante=8)
+t=50: chegou NAV (deadline_absoluto=80, burst_restante=15)
+t=60: chegou ATT (deadline_absoluto=72, burst_restante=8)
+t=80: chegou ATT (deadline_absoluto=92, burst_restante=8)
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exxi[K[Kit
+[?2004lexit
+
+Script done on 2026-09-08 13:41:20-03:00 [COMMAND_EXIT_CODE="0"]

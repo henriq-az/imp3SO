@@ -14,10 +14,9 @@ static Task tasks[MAX_TASKS];
 static int num_tasks = 0;
 static int tempo_total = 0;
 
-/* Converte um campo lido como string em inteiro positivo, ou mata o
- * programa com mensagem coerente e exit code != 0. strtol (em vez de
- * atoi) e o que permite distinguir "abc" (nao numerico) de "0"
- * (numerico, porem nao positivo). */
+static Instancia prontas[MAX_TASKS];
+static int num_prontas = 0;
+
 static int parse_inteiro_positivo(const char *texto, const char *campo,
                                    const char *nome_tarefa, int linha,
                                    const char *arquivo) {
@@ -49,7 +48,6 @@ int le_arquivo(const char *nome_arquivo) {
         exit(EXIT_ARQUIVO);
     }
 
-    /* Primeira linha: tempo_total */
     char linha1[256];
     if (fgets(linha1, sizeof(linha1), f) == NULL) {
         fprintf(stderr, "Erro: '%s' esta vazio (esperava tempo_total na linha 1)\n",
@@ -76,7 +74,6 @@ int le_arquivo(const char *nome_arquivo) {
     }
     tempo_total = (int)tt;
 
-    /* Demais linhas: nome periodo deadline burst */
     char linha[256];
     char nome[MAX_NOME];
     char campo_p[64], campo_d[64], campo_b[64];
@@ -86,7 +83,6 @@ int le_arquivo(const char *nome_arquivo) {
     while (fgets(linha, sizeof(linha), f) != NULL) {
         linha_num++;
 
-        /* linha em branco (so espacos/tabs/\n): ignora, nao conta como erro */
         char *c = linha;
         while (*c == ' ' || *c == '\t' || *c == '\n' || *c == '\r') c++;
         if (*c == '\0') continue;
@@ -158,6 +154,21 @@ int le_arquivo(const char *nome_arquivo) {
     return 0;
 }
 
+void checa_chegadas(int t) {
+    for (int i = 0; i < num_tasks; i++) {
+        Task *task = &tasks[i];
+        if (t % task->periodo == 0) {
+            if (num_prontas >= MAX_TASKS) continue;
+
+            prontas[num_prontas].task = task;
+            prontas[num_prontas].chegada = t;
+            prontas[num_prontas].deadline_absoluto = t + task->deadline;
+            prontas[num_prontas].burst_restante = task->burst;
+            num_prontas++;
+        }
+    }
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         fprintf(stderr, "Uso: %s <rate|edf> <arquivo_de_entrada>\n", argv[0]);
@@ -170,12 +181,7 @@ int main(int argc, char *argv[]) {
         return EXIT_MODO;
     }
 
-    le_arquivo(argv[2]);  // valida o arquivo inteiro; sai internamente se algo estiver errado
-
-    /* So a partir daqui o arquivo de entrada esta 100% validado.
-     * Qualquer abertura futura do .out de saida deve vir depois deste ponto,
-     * nunca antes -- e assim que garantimos "sem criar arquivo de saida"
-     * quando a validacao falha. */
+    le_arquivo(argv[2]);
 
     printf("tempo_total = %d\n", tempo_total);
     printf("num_tasks = %d\n\n", num_tasks);
@@ -184,6 +190,17 @@ int main(int argc, char *argv[]) {
         Task *t = &tasks[i];
         printf("ordem=%d nome=%s periodo=%d deadline=%d burst=%d\n",
                t->ordem, t->nome, t->periodo, t->deadline, t->burst);
+    }
+
+    printf("\nChegadas de instancias (t=0..%d):\n", tempo_total - 1);
+    for (int t = 0; t < tempo_total; t++) {
+        int antes = num_prontas;
+        checa_chegadas(t);
+        for (int i = antes; i < num_prontas; i++) {
+            Instancia *inst = &prontas[i];
+            printf("t=%d: chegou %s (deadline_absoluto=%d, burst_restante=%d)\n",
+                   t, inst->task->nome, inst->deadline_absoluto, inst->burst_restante);
+        }
     }
 
     return 0;
