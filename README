@@ -1,0 +1,12 @@
+# Scheduler
+
+## Arquivos
+
+## Como compilar
+make
+
+## Como executar
+
+
+## Sistema operacional testado
+Ubuntu 24.04 (WSL2, arm64)
