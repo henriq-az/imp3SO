@@ -169,6 +169,27 @@ void checa_chegadas(int t) {
     }
 }
 
+int escolhe_prontas_rate(void) {
+    int melhor = -1;
+
+    for (int i = 0; i < num_prontas; i++) {
+        if (melhor == -1) {
+            melhor = i;
+            continue;
+        }
+
+        Task *a = prontas[i].task;
+        Task *b = prontas[melhor].task;
+
+        if (a->periodo < b->periodo ||
+            (a->periodo == b->periodo && a->ordem < b->ordem)) {
+            melhor = i;
+        }
+    }
+
+    return melhor;
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         fprintf(stderr, "Uso: %s <rate|edf> <arquivo_de_entrada>\n", argv[0]);
@@ -192,15 +213,32 @@ int main(int argc, char *argv[]) {
                t->ordem, t->nome, t->periodo, t->deadline, t->burst);
     }
 
-    printf("\nChegadas de instancias (t=0..%d):\n", tempo_total - 1);
+    printf("\n");
     for (int t = 0; t < tempo_total; t++) {
-        int antes = num_prontas;
         checa_chegadas(t);
-        for (int i = antes; i < num_prontas; i++) {
-            Instancia *inst = &prontas[i];
-            printf("t=%d: chegou %s (deadline_absoluto=%d, burst_restante=%d)\n",
-                   t, inst->task->nome, inst->deadline_absoluto, inst->burst_restante);
+
+        int idx = escolhe_prontas_rate();
+        if (idx == -1) {
+            printf("t=%d: CPU ociosa\n", t);
+            continue;
         }
+
+        Instancia *inst = &prontas[idx];
+        printf("t=%d: executa %s (burst_restante %d -> %d)\n",
+               t, inst->task->nome, inst->burst_restante, inst->burst_restante - 1);
+
+        inst->burst_restante--;
+
+        if (inst->burst_restante == 0) {
+            inst->task->completadas++;
+            prontas[idx] = prontas[num_prontas - 1];
+            num_prontas--;
+        }
+    }
+
+    printf("\n");
+    for (int i = 0; i < num_tasks; i++) {
+        printf("%s: completadas=%d\n", tasks[i].nome, tasks[i].completadas);
     }
 
     return 0;

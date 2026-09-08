@@ -133,3 +133,308 @@ t=80: chegou ATT (deadline_absoluto=92, burst_restante=8)
 [?2004lexit
 
 Script done on 2026-09-08 13:41:20-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-08 15:05:03-03:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="144" LINES="9"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make clean
+[?2004lrm -f scheduler.o scheduler
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make
+[?2004lgcc -Wall -Wextra -std=c11 -g -c scheduler.c -o scheduler.o
+gcc -Wall -Wextra -std=c11 -g -o scheduler scheduler.o
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate voo.txt[27m./scheduler rate voo.txt
+[?2004ltempo_total = 100
+num_tasks = 2
+
+ordem=0 nome=ATT periodo=20 deadline=12 burst=8
+ordem=1 nome=NAV periodo=50 deadline=30 burst=15
+
+t=0: executa ATT (burst_restante 8 -> 7)
+t=1: executa ATT (burst_restante 7 -> 6)
+t=2: executa ATT (burst_restante 6 -> 5)
+t=3: executa ATT (burst_restante 5 -> 4)
+t=4: executa ATT (burst_restante 4 -> 3)
+t=5: executa ATT (burst_restante 3 -> 2)
+t=6: executa ATT (burst_restante 2 -> 1)
+t=7: executa ATT (burst_restante 1 -> 0)
+t=8: executa NAV (burst_restante 15 -> 14)
+t=9: executa NAV (burst_restante 14 -> 13)
+t=10: executa NAV (burst_restante 13 -> 12)
+t=11: executa NAV (burst_restante 12 -> 11)
+t=12: executa NAV (burst_restante 11 -> 10)
+t=13: executa NAV (burst_restante 10 -> 9)
+t=14: executa NAV (burst_restante 9 -> 8)
+t=15: executa NAV (burst_restante 8 -> 7)
+t=16: executa NAV (burst_restante 7 -> 6)
+t=17: executa NAV (burst_restante 6 -> 5)
+t=18: executa NAV (burst_restante 5 -> 4)
+t=19: executa NAV (burst_restante 4 -> 3)
+t=20: executa ATT (burst_restante 8 -> 7)
+t=21: executa ATT (burst_restante 7 -> 6)
+t=22: executa ATT (burst_restante 6 -> 5)
+t=23: executa ATT (burst_restante 5 -> 4)
+t=24: executa ATT (burst_restante 4 -> 3)
+t=25: executa ATT (burst_restante 3 -> 2)
+t=26: executa ATT (burst_restante 2 -> 1)
+t=27: executa ATT (burst_restante 1 -> 0)
+t=28: executa NAV (burst_restante 3 -> 2)
+t=29: executa NAV (burst_restante 2 -> 1)
+t=30: executa NAV (burst_restante 1 -> 0)
+t=31: CPU ociosa
+t=32: CPU ociosa
+t=33: CPU ociosa
+t=34: CPU ociosa
+t=35: CPU ociosa
+t=36: CPU ociosa
+t=37: CPU ociosa
+t=38: CPU ociosa
+t=39: CPU ociosa
+t=40: executa ATT (burst_restante 8 -> 7)
+t=41: executa ATT (burst_restante 7 -> 6)
+t=42: executa ATT (burst_restante 6 -> 5)
+t=43: executa ATT (burst_restante 5 -> 4)
+t=44: executa ATT (burst_restante 4 -> 3)
+t=45: executa ATT (burst_restante 3 -> 2)
+t=46: executa ATT (burst_restante 2 -> 1)
+t=47: executa ATT (burst_restante 1 -> 0)
+t=48: CPU ociosa
+t=49: CPU ociosa
+t=50: executa NAV (burst_restante 15 -> 14)
+t=51: executa NAV (burst_restante 14 -> 13)
+t=52: executa NAV (burst_restante 13 -> 12)
+t=53: executa NAV (burst_restante 12 -> 11)
+t=54: executa NAV (burst_restante 11 -> 10)
+t=55: executa NAV (burst_restante 10 -> 9)
+t=56: executa NAV (burst_restante 9 -> 8)
+t=57: executa NAV (burst_restante 8 -> 7)
+t=58: executa NAV (burst_restante 7 -> 6)
+t=59: executa NAV (burst_restante 6 -> 5)
+t=60: executa ATT (burst_restante 8 -> 7)
+t=61: executa ATT (burst_restante 7 -> 6)
+t=62: executa ATT (burst_restante 6 -> 5)
+t=63: executa ATT (burst_restante 5 -> 4)
+t=64: executa ATT (burst_restante 4 -> 3)
+t=65: executa ATT (burst_restante 3 -> 2)
+t=66: executa ATT (burst_restante 2 -> 1)
+t=67: executa ATT (burst_restante 1 -> 0)
+t=68: executa NAV (burst_restante 5 -> 4)
+t=69: executa NAV (burst_restante 4 -> 3)
+t=70: executa NAV (burst_restante 3 -> 2)
+t=71: executa NAV (burst_restante 2 -> 1)
+t=72: executa NAV (burst_restante 1 -> 0)
+t=73: CPU ociosa
+t=74: CPU ociosa
+t=75: CPU ociosa
+t=76: CPU ociosa
+t=77: CPU ociosa
+t=78: CPU ociosa
+t=79: CPU ociosa
+t=80: executa ATT (burst_restante 8 -> 7)
+t=81: executa ATT (burst_restante 7 -> 6)
+t=82: executa ATT (burst_restante 6 -> 5)
+t=83: executa ATT (burst_restante 5 -> 4)
+t=84: executa ATT (burst_restante 4 -> 3)
+t=85: executa ATT (burst_restante 3 -> 2)
+t=86: executa ATT (burst_restante 2 -> 1)
+t=87: executa ATT (burst_restante 1 -> 0)
+t=88: CPU ociosa
+t=89: CPU ociosa
+t=90: CPU ociosa
+t=91: CPU ociosa
+t=92: CPU ociosa
+t=93: CPU ociosa
+t=94: CPU ociosa
+t=95: CPU ociosa
+t=96: CPU ociosa
+t=97: CPU ociosa
+t=98: CPU ociosa
+t=99: CPU ociosa
+
+ATT: completadas=5
+NAV: completadas=2
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mcat testes/rate_empate.txt[27m
+[7m./scheduler rate testes/rate_empate.txt[27m[Acat testes/rate_empate.txt
+./scheduler rate testes/rate_empate.txt
+[?2004l25
+A 10 8 3
+B 10 8 3
+tempo_total = 25
+num_tasks = 2
+
+ordem=0 nome=A periodo=10 deadline=8 burst=3
+ordem=1 nome=B periodo=10 deadline=8 burst=3
+
+t=0: executa A (burst_restante 3 -> 2)
+t=1: executa A (burst_restante 2 -> 1)
+t=2: executa A (burst_restante 1 -> 0)
+t=3: executa B (burst_restante 3 -> 2)
+t=4: executa B (burst_restante 2 -> 1)
+t=5: executa B (burst_restante 1 -> 0)
+t=6: CPU ociosa
+t=7: CPU ociosa
+t=8: CPU ociosa
+t=9: CPU ociosa
+t=10: executa A (burst_restante 3 -> 2)
+t=11: executa A (burst_restante 2 -> 1)
+t=12: executa A (burst_restante 1 -> 0)
+t=13: executa B (burst_restante 3 -> 2)
+t=14: executa B (burst_restante 2 -> 1)
+t=15: executa B (burst_restante 1 -> 0)
+t=16: CPU ociosa
+t=17: CPU ociosa
+t=18: CPU ociosa
+t=19: CPU ociosa
+t=20: executa A (burst_restante 3 -> 2)
+t=21: executa A (burst_restante 2 -> 1)
+t=22: executa A (burst_restante 1 -> 0)
+t=23: executa B (burst_restante 3 -> 2)
+t=24: executa B (burst_restante 2 -> 1)
+
+A: completadas=3
+B: completadas=2
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate testes/voo3.txt[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./scheduler rate testes/voo3.txt
+[?2004ltempo_total = 100
+num_tasks = 3
+
+ordem=0 nome=radar periodo=10 deadline=8 burst=3
+ordem=1 nome=motor periodo=20 deadline=15 burst=5
+ordem=2 nome=gps periodo=15 deadline=12 burst=4
+
+t=0: executa radar (burst_restante 3 -> 2)
+t=1: executa radar (burst_restante 2 -> 1)
+t=2: executa radar (burst_restante 1 -> 0)
+t=3: executa gps (burst_restante 4 -> 3)
+t=4: executa gps (burst_restante 3 -> 2)
+t=5: executa gps (burst_restante 2 -> 1)
+t=6: executa gps (burst_restante 1 -> 0)
+t=7: executa motor (burst_restante 5 -> 4)
+t=8: executa motor (burst_restante 4 -> 3)
+t=9: executa motor (burst_restante 3 -> 2)
+t=10: executa radar (burst_restante 3 -> 2)
+t=11: executa radar (burst_restante 2 -> 1)
+t=12: executa radar (burst_restante 1 -> 0)
+t=13: executa motor (burst_restante 2 -> 1)
+t=14: executa motor (burst_restante 1 -> 0)
+t=15: executa gps (burst_restante 4 -> 3)
+t=16: executa gps (burst_restante 3 -> 2)
+t=17: executa gps (burst_restante 2 -> 1)
+t=18: executa gps (burst_restante 1 -> 0)
+t=19: CPU ociosa
+t=20: executa radar (burst_restante 3 -> 2)
+t=21: executa radar (burst_restante 2 -> 1)
+t=22: executa radar (burst_restante 1 -> 0)
+t=23: executa motor (burst_restante 5 -> 4)
+t=24: executa motor (burst_restante 4 -> 3)
+t=25: executa motor (burst_restante 3 -> 2)
+t=26: executa motor (burst_restante 2 -> 1)
+t=27: executa motor (burst_restante 1 -> 0)
+t=28: CPU ociosa
+t=29: CPU ociosa
+t=30: executa radar (burst_restante 3 -> 2)
+t=31: executa radar (burst_restante 2 -> 1)
+t=32: executa radar (burst_restante 1 -> 0)
+t=33: executa gps (burst_restante 4 -> 3)
+t=34: executa gps (burst_restante 3 -> 2)
+t=35: executa gps (burst_restante 2 -> 1)
+t=36: executa gps (burst_restante 1 -> 0)
+t=37: CPU ociosa
+t=38: CPU ociosa
+t=39: CPU ociosa
+t=40: executa radar (burst_restante 3 -> 2)
+t=41: executa radar (burst_restante 2 -> 1)
+t=42: executa radar (burst_restante 1 -> 0)
+t=43: executa motor (burst_restante 5 -> 4)
+t=44: executa motor (burst_restante 4 -> 3)
+t=45: executa gps (burst_restante 4 -> 3)
+t=46: executa gps (burst_restante 3 -> 2)
+t=47: executa gps (burst_restante 2 -> 1)
+t=48: executa gps (burst_restante 1 -> 0)
+t=49: executa motor (burst_restante 3 -> 2)
+t=50: executa radar (burst_restante 3 -> 2)
+t=51: executa radar (burst_restante 2 -> 1)
+t=52: executa radar (burst_restante 1 -> 0)
+t=53: executa motor (burst_restante 2 -> 1)
+t=54: executa motor (burst_restante 1 -> 0)
+t=55: CPU ociosa
+t=56: CPU ociosa
+t=57: CPU ociosa
+t=58: CPU ociosa
+t=59: CPU ociosa
+t=60: executa radar (burst_restante 3 -> 2)
+t=61: executa radar (burst_restante 2 -> 1)
+t=62: executa radar (burst_restante 1 -> 0)
+t=63: executa gps (burst_restante 4 -> 3)
+t=64: executa gps (burst_restante 3 -> 2)
+t=65: executa gps (burst_restante 2 -> 1)
+t=66: executa gps (burst_restante 1 -> 0)
+t=67: executa motor (burst_restante 5 -> 4)
+t=68: executa motor (burst_restante 4 -> 3)
+t=69: executa motor (burst_restante 3 -> 2)
+t=70: executa radar (burst_restante 3 -> 2)
+t=71: executa radar (burst_restante 2 -> 1)
+t=72: executa radar (burst_restante 1 -> 0)
+t=73: executa motor (burst_restante 2 -> 1)
+t=74: executa motor (burst_restante 1 -> 0)
+t=75: executa gps (burst_restante 4 -> 3)
+t=76: executa gps (burst_restante 3 -> 2)
+t=77: executa gps (burst_restante 2 -> 1)
+t=78: executa gps (burst_restante 1 -> 0)
+t=79: CPU ociosa
+t=80: executa radar (burst_restante 3 -> 2)
+t=81: executa radar (burst_restante 2 -> 1)
+t=82: executa radar (burst_restante 1 -> 0)
+t=83: executa motor (burst_restante 5 -> 4)
+t=84: executa motor (burst_restante 4 -> 3)
+t=85: executa motor (burst_restante 3 -> 2)
+t=86: executa motor (burst_restante 2 -> 1)
+t=87: executa motor (burst_restante 1 -> 0)
+t=88: CPU ociosa
+t=89: CPU ociosa
+t=90: executa radar (burst_restante 3 -> 2)
+t=91: executa radar (burst_restante 2 -> 1)
+t=92: executa radar (burst_restante 1 -> 0)
+t=93: executa gps (burst_restante 4 -> 3)
+t=94: executa gps (burst_restante 3 -> 2)
+t=95: executa gps (burst_restante 2 -> 1)
+t=96: executa gps (burst_restante 1 -> 0)
+t=97: CPU ociosa
+t=98: CPU ociosa
+t=99: CPU ociosa
+
+radar: completadas=10
+motor: completadas=5
+gps: completadas=7
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mfor t in testes/erro_*.txt; do[27m
+[7m  echo "=== $t ==="[27m
+[7m  ./scheduler rate "$t"[27m
+[7m  echo "exit: $?"[27m
+[7mdone[27m[A[A[A[A]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ for t in testes/erro_*.txt; do
+  echo "=== $t ==="
+  ./scheduler rate "$t"
+  echo "exit: $?"
+done
+[?2004l=== testes/erro_burst_maior_deadline.txt ===
+Erro: tarefa 'radar' (linha 2 de 'testes/erro_burst_maior_deadline.txt') com burst > deadline (C=12, D=8)
+exit: 5
+=== testes/erro_campo_faltando.txt ===
+Erro: linha 3 de 'testes/erro_campo_faltando.txt' com campo(s) faltando (esperado 4, lido 3)
+exit: 4
+=== testes/erro_campo_faltando_meio.txt ===
+Erro: linha 2 de 'testes/erro_campo_faltando_meio.txt' com campo(s) faltando (esperado 4, lido 3)
+exit: 4
+=== testes/erro_campo_sobrando.txt ===
+Erro: linha 3 de 'testes/erro_campo_sobrando.txt' com campo(s) sobrando (esperado 4, lido 5)
+exit: 4
+=== testes/erro_deadline_maior_periodo.txt ===
+Erro: tarefa 'radar' (linha 2 de 'testes/erro_deadline_maior_periodo.txt') com deadline > periodo (D=15, P=10)
+exit: 5
+=== testes/erro_tempo_total_invalido.txt ===
+Erro: tempo_total invalido (nao numerico) na linha 1 de 'testes/erro_tempo_total_invalido.txt'
+exit: 4
+=== testes/erro_valor_nao_numerico.txt ===
+Erro: tarefa 'motor' (linha 3 de 'testes/erro_valor_nao_numerico.txt') com periodo nao numerico ('abc')
+exit: 4
+=== testes/erro_valor_nao_positivo.txt ===
+Erro: tarefa 'motor' (linha 3 de 'testes/erro_valor_nao_positivo.txt') com burst nao positivo (-5)
+exit: 4
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-08 15:05:28-03:00 [COMMAND_EXIT_CODE="0"]
