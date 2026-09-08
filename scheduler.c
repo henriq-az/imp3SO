@@ -169,6 +169,22 @@ void checa_chegadas(int t) {
     }
 }
 
+void checa_deadlines(int t) {
+    int i = 0;
+    while (i < num_prontas) {
+        if (prontas[i].deadline_absoluto == t) {
+            prontas[i].task->perdidas++;
+            printf("t=%d: %s perdeu o deadline (chegada=%d)\n",
+                   t, prontas[i].task->nome, prontas[i].chegada);
+
+            prontas[i] = prontas[num_prontas - 1];
+            num_prontas--;
+        } else {
+            i++;
+        }
+    }
+}
+
 int escolhe_prontas_rate(void) {
     int melhor = -1;
 
@@ -215,6 +231,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n");
     for (int t = 0; t < tempo_total; t++) {
+        checa_deadlines(t);
         checa_chegadas(t);
 
         int idx = escolhe_prontas_rate();
@@ -238,7 +255,8 @@ int main(int argc, char *argv[]) {
 
     printf("\n");
     for (int i = 0; i < num_tasks; i++) {
-        printf("%s: completadas=%d\n", tasks[i].nome, tasks[i].completadas);
+        printf("%s: completadas=%d perdidas=%d\n",
+               tasks[i].nome, tasks[i].completadas, tasks[i].perdidas);
     }
 
     return 0;

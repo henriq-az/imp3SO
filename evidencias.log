@@ -438,3 +438,24 @@ exit: 4
 [?2004lexit
 
 Script done on 2026-09-08 15:05:28-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-08 16:24:34-03:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="144" LINES="20"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make clean
+[?2004lrm -f scheduler.o scheduler
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make
+[?2004lgcc -Wall -Wextra -std=c11 -g -c scheduler.c -o scheduler.o
+gcc -Wall -Wextra -std=c11 -g -o scheduler scheduler.o
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate voo.txt | tail -3[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./scheduler rate voo.txt | tail -3
+[?2004l
+ATT: completadas=5 perdidas=0
+NAV: completadas=1 perdidas=1
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate voo.txt | grep "perdeu"[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./scheduler rate voo.txt | grep "perdeu"
+[?2004lt=30: NAV [01;31m[Kperdeu[m[K o deadline (chegada=0)
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate testes/voo3.txt | tail -4[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./scheduler rate testes/voo3.txt | tail -4
+[?2004l
+radar: completadas=10 perdidas=0
+motor: completadas=5 perdidas=0
+gps: completadas=7 perdidas=0
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-08 16:24:58-03:00 [COMMAND_EXIT_CODE="0"]
