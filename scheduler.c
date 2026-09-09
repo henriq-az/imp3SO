@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <math.h>
 #include "scheduler.h"
 
 #define EXIT_USO         1
@@ -328,6 +329,16 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < num_tasks; i++) {
         fprintf(saida, "[%s] %d\n", tasks[i].nome, tasks[i].killed);
     }
+
+    double utilizacao = 0.0;
+    for (int i = 0; i < num_tasks; i++) {
+        utilizacao += (double)tasks[i].burst / tasks[i].periodo;
+    }
+    double bound = num_tasks * (pow(2.0, 1.0 / num_tasks) - 1.0);
+
+    fprintf(saida, "SCHEDULABILITY\n");
+    fprintf(saida, "UTILIZATION %.3f\n", utilizacao);
+    fprintf(saida, "RM BOUND %.3f\n", bound);
 
     fclose(saida);
 
