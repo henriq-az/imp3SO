@@ -227,6 +227,25 @@ int escolhe_prontas_rate(void) {
     return melhor;
 }
 
+int escolhe_prontas_edf(void) {
+    int melhor = -1;
+
+    for (int i = 0; i < num_prontas; i++) {
+        if (melhor == -1) {
+            melhor = i;
+            continue;
+        }
+
+        if (prontas[i].deadline_absoluto < prontas[melhor].deadline_absoluto ||
+            (prontas[i].deadline_absoluto == prontas[melhor].deadline_absoluto &&
+             prontas[i].task->ordem < prontas[melhor].task->ordem)) {
+            melhor = i;
+        }
+    }
+
+    return melhor;
+}
+
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         fprintf(stderr, "Uso: %s <rate|edf> <arquivo_de_entrada>\n", argv[0]);
@@ -259,7 +278,7 @@ int main(int argc, char *argv[]) {
         checa_deadlines(t);
         checa_chegadas(t);
 
-        int idx = escolhe_prontas_rate();
+        int idx = eh_rate ? escolhe_prontas_rate() : escolhe_prontas_edf();
         Task *escolhido = (idx == -1) ? NULL : prontas[idx].task;
 
         if (!bloco_ativo) {
