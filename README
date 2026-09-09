@@ -1,12 +1,97 @@
-# Scheduler
+# Scheduler — Implementação 3 (Infraestrutura de Software)
+
+Simulador de escalonamento de tarefas periódicas críticas, comparando
+rate-monotonic (rate) e earliest-deadline-first (edf).
 
 ## Arquivos
 
+- scheduler.h  → definição das structs Task e Instancia e das constantes
+                 MAX_TASKS / MAX_NOME
+- scheduler.c  → implementação completa: leitura e validação da entrada,
+                 chegada de instâncias, escolha por prioridade (rate e edf),
+                 perda de deadline, contadores e escrita da saída
+
 ## Como compilar
+
 make
+
+Gera o executável `scheduler`. Para limpar:
+
+make clean
 
 ## Como executar
 
+./scheduler rate <arquivo_de_entrada>
+./scheduler edf  <arquivo_de_entrada>
 
-## Sistema operacional testado
-Ubuntu 24.04 (WSL2, arm64)
+Exemplo:
+
+./scheduler rate voo.txt
+
+A saída é gravada em rate_hac2.out ou edf_hac2.out, conforme o algoritmo.
+Nada é impresso na saída padrão durante a execução normal.
+
+## Formato do arquivo de entrada
+
+Primeira linha: tempo total da simulação.
+Demais linhas: NOME PERIODO DEADLINE BURST
+
+Exemplo (voo.txt):
+
+100
+ATT 20 12 8
+NAV 50 30 15
+
+## Como testar
+
+Os arquivos de teste estão no diretório testes/, agrupados por finalidade:
+
+- **Casos válidos básicos**: voo.txt, voo3.txt, ok_linha_em_branco.txt
+  — arquivos de entrada bem formados, usados para conferir a execução
+  normal (chegada de instâncias, escolha por prioridade, contadores).
+
+- **Validação de entrada (mensagem de erro + exit code)**:
+  erro_campo_faltando.txt, erro_campo_faltando_meio.txt,
+  erro_campo_sobrando.txt, erro_valor_nao_numerico.txt,
+  erro_valor_nao_positivo.txt, erro_tempo_total_invalido.txt
+  (exit 4 — entrada malformada) e erro_deadline_maior_periodo.txt,
+  erro_burst_maior_deadline.txt (exit 5 — viola D<=P ou C<=D).
+
+- **Desempate de prioridade**: rate_empate.txt — duas tarefas com o
+  mesmo período, valida que o desempate segue a ordem de leitura
+  do arquivo.
+
+- **Casos de borda da simulação**:
+  - tempo_menor_periodo.txt — tempo_total menor que o período de
+    uma tarefa (só a primeira instância chega a existir).
+  - uma_tarefa.txt — sistema com uma única tarefa.
+  - sobrecarregado.txt — soma dos bursts por período maior que o
+    tempo disponível, gerando várias perdas de deadline
+    (LOST DEADLINES).
+  - tempo_nao_multiplo.txt — tempo_total não é múltiplo do período
+    da tarefa; a última instância é cortada pelo fim da simulação
+    (KILLED).
+  - borda_solo.txt / borda_solo11.txt — mesma tarefa (SOLO 4 4 2)
+    com tempo_total = 10 e 11, para comparar o comportamento no
+    limite exato do fim da simulação: em borda_solo.txt a última
+    instância termina exatamente no último tick (nenhum bloco de
+    ociosidade sobra depois); em borda_solo11.txt sobra 1 tick de
+    ociosidade, exercitando o fechamento do último bloco só quando
+    ele ainda está ativo.
+
+- **Gabarito**: gabarito_rate_voo.txt — saída de referência esperada
+  para `./scheduler rate voo.txt`, usada para validar rate_hac2.out
+  byte a byte.
+
+Para rodar todos de uma vez:
+
+for t in testes/*.txt; do
+  echo "=== $t ==="
+  ./scheduler rate "$t"
+  echo "exit: $?"
+done
+
+## Sistema operacional
+
+Implementado e testado em Ubuntu 24.04 (WSL2, arquitetura arm64),
+compilado com gcc.
