@@ -701,3 +701,196 @@ KILLED
 [?2004lexit
 
 Script done on 2026-09-09 11:54:23-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 15:47:14-03:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="144" LINES="19"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mfor t in testes/sobrecarregado.txt testes/tempo_menor_periodo.txt testes/tempo_nao_multiplo.txt testes/uma_tarefa.txt[27m[7m [27m[7mtestes/comparativo.txt; do [27m
+[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cfor t in testes/sobrecarregado.txt testes/tempo_menor_periodo.txt testes/tempo_nao_multiplo.txt testes/uma_tarefa.txt testes/comparativo.txt; do
+[A
+[?2004l[?2004h> [7m  echo "=== $t (rate) ==="[27m
+[A[C[C  echo "=== $t (rate) ==="
+[A
+[?2004l[?2004h> [7m  cat "$t"[27m
+[A[C[C  cat "$t"
+[7m./scheduler rate "$t" && cat rate_hac2.out[27m
+[7m  echo "=== $t (edf) ==="[27m
+[7m  ./scheduler edf "$t" && cat edf_hac2.out[27m[A[A./scheduler rate "$t" && cat rate_hac2.out
+  echo "=== $t (edf) ==="
+  ./scheduler edf "$t" && cat edf_hac2.out
+[?2004l[?2004h> done
+[?2004l=== testes/sobrecarregado.txt (rate) ===
+40
+X 10 8 6
+Y 10 8 6
+EXECUTION BY RATE
+[X] for 6 units - F
+[Y] for 2 units - L
+idle for 2 units
+[X] for 6 units - F
+[Y] for 2 units - L
+idle for 2 units
+[X] for 6 units - F
+[Y] for 2 units - L
+idle for 2 units
+[X] for 6 units - F
+[Y] for 2 units - L
+idle for 2 units
+LOST DEADLINES
+[X] 0
+[Y] 4
+COMPLETE EXECUTION
+[X] 4
+[Y] 0
+KILLED
+[X] 0
+[Y] 0
+=== testes/sobrecarregado.txt (edf) ===
+EXECUTION BY EDF
+[X] for 6 units - F
+[Y] for 2 units - L
+idle for 2 units
+[X] for 6 units - F
+[Y] for 2 units - L
+idle for 2 units
+[X] for 6 units - F
+[Y] for 2 units - L
+idle for 2 units
+[X] for 6 units - F
+[Y] for 2 units - L
+idle for 2 units
+LOST DEADLINES
+[X] 0
+[Y] 4
+COMPLETE EXECUTION
+[X] 4
+[Y] 0
+KILLED
+[X] 0
+[Y] 0
+=== testes/tempo_menor_periodo.txt (rate) ===
+15
+LONG 20 10 5
+EXECUTION BY RATE
+[LONG] for 5 units - F
+idle for 10 units
+LOST DEADLINES
+[LONG] 0
+COMPLETE EXECUTION
+[LONG] 1
+KILLED
+[LONG] 0
+=== testes/tempo_menor_periodo.txt (edf) ===
+EXECUTION BY EDF
+[LONG] for 5 units - F
+idle for 10 units
+LOST DEADLINES
+[LONG] 0
+COMPLETE EXECUTION
+[LONG] 1
+KILLED
+[LONG] 0
+=== testes/tempo_nao_multiplo.txt (rate) ===
+21
+CUT 9 7 5
+EXECUTION BY RATE
+[CUT] for 5 units - F
+idle for 4 units
+[CUT] for 5 units - F
+idle for 4 units
+[CUT] for 3 units
+LOST DEADLINES
+[CUT] 0
+COMPLETE EXECUTION
+[CUT] 2
+KILLED
+[CUT] 1
+=== testes/tempo_nao_multiplo.txt (edf) ===
+EXECUTION BY EDF
+[CUT] for 5 units - F
+idle for 4 units
+[CUT] for 5 units - F
+idle for 4 units
+[CUT] for 3 units
+LOST DEADLINES
+[CUT] 0
+COMPLETE EXECUTION
+[CUT] 2
+KILLED
+[CUT] 1
+=== testes/uma_tarefa.txt (rate) ===
+30
+SOLO 10 8 3
+EXECUTION BY RATE
+[SOLO] for 3 units - F
+idle for 7 units
+[SOLO] for 3 units - F
+idle for 7 units
+[SOLO] for 3 units - F
+idle for 7 units
+LOST DEADLINES
+[SOLO] 0
+COMPLETE EXECUTION
+[SOLO] 3
+KILLED
+[SOLO] 0
+=== testes/uma_tarefa.txt (edf) ===
+EXECUTION BY EDF
+[SOLO] for 3 units - F
+idle for 7 units
+[SOLO] for 3 units - F
+idle for 7 units
+[SOLO] for 3 units - F
+idle for 7 units
+LOST DEADLINES
+[SOLO] 0
+COMPLETE EXECUTION
+[SOLO] 3
+KILLED
+[SOLO] 0
+=== testes/comparativo.txt (rate) ===
+40
+T1 10 10 3
+T2 20 6 4
+EXECUTION BY RATE
+[T1] for 3 units - F
+[T2] for 3 units - L
+idle for 4 units
+[T1] for 3 units - F
+idle for 7 units
+[T1] for 3 units - F
+[T2] for 3 units - L
+idle for 4 units
+[T1] for 3 units - F
+idle for 7 units
+LOST DEADLINES
+[T1] 0
+[T2] 2
+COMPLETE EXECUTION
+[T1] 4
+[T2] 0
+KILLED
+[T1] 0
+[T2] 0
+=== testes/comparativo.txt (edf) ===
+EXECUTION BY EDF
+[T2] for 4 units - F
+[T1] for 3 units - F
+idle for 3 units
+[T1] for 3 units - F
+idle for 7 units
+[T2] for 4 units - F
+[T1] for 3 units - F
+idle for 3 units
+[T1] for 3 units - F
+idle for 7 units
+LOST DEADLINES
+[T1] 0
+[T2] 0
+COMPLETE EXECUTION
+[T1] 4
+[T2] 2
+KILLED
+[T1] 0
+[T2] 0
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-09 15:47:44-03:00 [COMMAND_EXIT_CODE="0"]
