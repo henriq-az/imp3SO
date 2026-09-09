@@ -559,3 +559,145 @@ KILLED
 [?2004lexit
 
 Script done on 2026-09-09 10:32:19-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 11:51:29-03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="144" LINES="14"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make clean
+[?2004lrm -f scheduler.o scheduler
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make
+[?2004lgcc -Wall -Wextra -std=c11 -g -c scheduler.c -o scheduler.o
+gcc -Wall -Wextra -std=c11 -g -o scheduler scheduler.o
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mprintf "10\nSOLO 4 4 2\n" > testes/borda_solo.txt[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cprintf "10\nSOLO 4 4 2\n" > testes/borda_solo.txt
+[A
+[?2004l[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate testes/borda_solo.txt[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./scheduler rate testes/borda_solo.txt
+[A
+[?2004l[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mcat rate_hac2.out[27mcat rate_hac2.out
+[?2004lEXECUTION BY RATE
+[SOLO] for 2 units - F
+idle for 2 units
+[SOLO] for 2 units - F
+idle for 2 units
+[SOLO] for 2 units - F
+[SOLO] for 2 units
+LOST DEADLINES
+[SOLO] 0
+COMPLETE EXECUTION
+[SOLO] 3
+KILLED
+[SOLO] 0
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-09 11:51:51-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 11:52:17-03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="144" LINES="14"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mprintf "11\nSOLO 4 4 2\n" > testes/borda_solo11.txt[27m
+[7m./scheduler rate testes/borda_solo11.txt[27m
+[7mcat rate_hac2.out[27m[A[A]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ printf "11\nSOLO 4 4 2\n" > testes/borda_solo11.txt
+./scheduler rate testes/borda_solo11.txt
+cat rate_hac2.out
+[?2004lEXECUTION BY RATE
+[SOLO] for 2 units - F
+idle for 2 units
+[SOLO] for 2 units - F
+idle for 2 units
+[SOLO] for 2 units - F
+idle for 1 units
+LOST DEADLINES
+[SOLO] 0
+COMPLETE EXECUTION
+[SOLO] 3
+KILLED
+[SOLO] 0
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-09 11:52:23-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 11:54:13-03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="144" LINES="14"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make clean
+[?2004lrm -f scheduler.o scheduler
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make
+[?2004lgcc -Wall -Wextra -std=c11 -g -c scheduler.c -o scheduler.o
+gcc -Wall -Wextra -std=c11 -g -o scheduler scheduler.o
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ echo "--- caso do bug (tempo 10) ---"
+./scheduler rate testes/borda_solo.txt
+[7mcat rate_hac2.out[27m
+
+[7mecho "--- contraste (tempo 11), deve continuar igual ---"[27m
+[7m./scheduler rate testes/borda_solo11.txt[27m
+[7mcat rate_hac2.out[27m
+
+[7mecho "--- regressao rate contra o gabarito ---"[27m
+[7m./scheduler rate voo.txt[27m
+[7mdiff rate_hac2.out testes/gabarito_rate_voo.txt[27m
+[7mecho "regressao: $?"[27m
+
+[7mecho "--- regressao edf ---"[27m
+[7m./scheduler edf voo.txt[27m[7mcat edf_hac2.out[27m[A[A[A[A[A[A[A[A[A[A[A[Acat rate_hac2.out
+
+echo "--- contraste (tempo 11), deve continuar igual ---"
+./scheduler rate testes/borda_solo11.txt
+cat rate_hac2.out
+
+echo "--- regressao rate contra o gabarito ---"
+./scheduler rate voo.txt
+diff rate_hac2.out testes/gabarito_rate_voo.txt
+echo "regressao: $?"
+
+echo "--- regressao edf ---"
+./scheduler edf voo.txtcat edf_hac2.out
+[?2004l--- caso do bug (tempo 10) ---
+EXECUTION BY RATE
+[SOLO] for 2 units - F
+idle for 2 units
+[SOLO] for 2 units - F
+idle for 2 units
+[SOLO] for 2 units - F
+LOST DEADLINES
+[SOLO] 0
+COMPLETE EXECUTION
+[SOLO] 3
+KILLED
+[SOLO] 0
+--- contraste (tempo 11), deve continuar igual ---
+EXECUTION BY RATE
+[SOLO] for 2 units - F
+idle for 2 units
+[SOLO] for 2 units - F
+idle for 2 units
+[SOLO] for 2 units - F
+idle for 1 units
+LOST DEADLINES
+[SOLO] 0
+COMPLETE EXECUTION
+[SOLO] 3
+KILLED
+[SOLO] 0
+--- regressao rate contra o gabarito ---
+regressao: 0
+--- regressao edf ---
+EXECUTION BY EDF
+[ATT] for 8 units - F
+[NAV] for 15 units - F
+[ATT] for 8 units - F
+idle for 9 units
+[ATT] for 8 units - F
+idle for 2 units
+[NAV] for 10 units - H
+[ATT] for 8 units - F
+[NAV] for 5 units - F
+idle for 7 units
+[ATT] for 8 units - F
+idle for 12 units
+LOST DEADLINES
+[ATT] 0
+[NAV] 0
+COMPLETE EXECUTION
+[ATT] 5
+[NAV] 2
+KILLED
+[ATT] 0
+[NAV] 0
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-09 11:54:23-03:00 [COMMAND_EXIT_CODE="0"]

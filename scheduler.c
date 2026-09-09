@@ -306,7 +306,13 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    fecha_bloco(tempo_total, NULL);
+    if (bloco_ativo) {
+        fecha_bloco(tempo_total, NULL);
+    }
+
+    for (int i = 0; i < num_prontas; i++) {
+        prontas[i].task->killed++;
+    }
 
     fprintf(saida, "LOST DEADLINES\n");
     for (int i = 0; i < num_tasks; i++) {
