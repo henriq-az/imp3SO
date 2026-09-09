@@ -459,3 +459,57 @@ gps: completadas=7 perdidas=0
 [?2004lexit
 
 Script done on 2026-09-08 16:24:58-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 09:22:27-03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="144" LINES="4"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make clean
+[?2004lrm -f scheduler.o scheduler
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make
+[?2004lgcc -Wall -Wextra -std=c11 -g -c scheduler.c -o scheduler.o
+gcc -Wall -Wextra -std=c11 -g -o scheduler scheduler.o
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ cat > testes/gabarito_rate_voo.txt << 'EOF'
+EXECUTION BY RATE
+[ATT] for 8 units - F
+[NAV] for 12 units - H
+[ATT] for 8 units - F[NAV] for 2 units - Lidle for 10 units[ATT] for 8 units - Fidle for 2 units[NAV] for 10 units - H[ATT] for 8 units - F[NAV] for 5 units - Fidle for 7 units[ATT] for 8 units - Fidle for 12 unitsLOST DEADLINES[ATT] 0[NAV] 1COMPLETE EXECUTION[ATT] 5[NAV] 1[7mKILLED[27m[7m[ATT] 0[27m[7m[NAV] 0[27m[7mEOF[27mKILLED[ATT] 0[NAV] 0EOF
+[?2004l[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate voo.txt[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./scheduler rate voo.txt
+[A
+[?2004l[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mdiff rate_hac2.out testes/gabarito_rate_voo.txt[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdiff rate_hac2.out testes/gabarito_rate_voo.txt
+[A
+[?2004l2d1
+< 
+16d14
+< 
+20d17
+< 
+24d20
+< 
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mecho "resultado: $?"[27mecho "resultado: $?"
+[?2004lresultado: 1
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate voo.txt > stdout.txt 2>/dev/null[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./scheduler rate voo.txt > stdout.txt 2>/dev/null
+[A
+[?2004l[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mwc -c stdout.txt[27mwc -c stdout.txt
+[?2004l0 stdout.txt
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-09 09:23:06-03:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-09 09:25:33-03:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="144" LINES="21"]
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make clean
+[?2004lrm -f scheduler.o scheduler
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ make
+[?2004lgcc -Wall -Wextra -std=c11 -g -c scheduler.c -o scheduler.o
+gcc -Wall -Wextra -std=c11 -g -o scheduler scheduler.o
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7m./scheduler rate voo.txt[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C./scheduler rate voo.txt
+[A
+[?2004l[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ [7mdiff rate_hac2.out testes/gabarito_rate_voo.txt[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdiff rate_hac2.out testes/gabarito_rate_voo.txt
+[A
+[?2004l[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ diff rate_hac2.out testes/gabarito_rate_voo.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[23P./scheduler rate voo.txtmake[K clean[6Pexitwc -c stdout.txt./scheduler rate voo.txt > stdout.txt 2>/dev/null[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[29Pecho "resultado: $?"diff rate_hac2.out testes/gabarito_rate_voo.txt[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[27Pecho "resultado: $?"
+[?2004lresultado: 0
+[?2004h]0;henrique@Lenovin: ~/imp3SO[01;32mhenrique@Lenovin[00m:[01;34m~/imp3SO[00m$ exit
+[?2004lexit
+
+Script done on 2026-09-09 09:25:57-03:00 [COMMAND_EXIT_CODE="0"]

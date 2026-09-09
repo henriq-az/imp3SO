@@ -17,6 +17,24 @@ static int tempo_total = 0;
 static Instancia prontas[MAX_TASKS];
 static int num_prontas = 0;
 
+static FILE *saida = NULL;
+static Task *bloco_task = NULL;
+static int bloco_inicio = 0;
+static int bloco_ativo = 0;
+
+static void fecha_bloco(int fim, const char *sufixo) {
+    int duracao = fim - bloco_inicio;
+    if (duracao <= 0) return;
+
+    if (bloco_task == NULL) {
+        fprintf(saida, "idle for %d units\n", duracao);
+    } else if (sufixo != NULL) {
+        fprintf(saida, "[%s] for %d units - %s\n", bloco_task->nome, duracao, sufixo);
+    } else {
+        fprintf(saida, "[%s] for %d units\n", bloco_task->nome, duracao);
+    }
+}
+
 static int parse_inteiro_positivo(const char *texto, const char *campo,
                                    const char *nome_tarefa, int linha,
                                    const char *arquivo) {
@@ -174,8 +192,11 @@ void checa_deadlines(int t) {
     while (i < num_prontas) {
         if (prontas[i].deadline_absoluto == t) {
             prontas[i].task->perdidas++;
-            printf("t=%d: %s perdeu o deadline (chegada=%d)\n",
-                   t, prontas[i].task->nome, prontas[i].chegada);
+
+            if (bloco_ativo && bloco_task == prontas[i].task) {
+                fecha_bloco(t, "L");
+                bloco_ativo = 0;
+            }
 
             prontas[i] = prontas[num_prontas - 1];
             num_prontas--;
@@ -220,44 +241,70 @@ int main(int argc, char *argv[]) {
 
     le_arquivo(argv[2]);
 
-    printf("tempo_total = %d\n", tempo_total);
-    printf("num_tasks = %d\n\n", num_tasks);
+    int eh_rate = (strcmp(modo, "rate") == 0);
 
-    for (int i = 0; i < num_tasks; i++) {
-        Task *t = &tasks[i];
-        printf("ordem=%d nome=%s periodo=%d deadline=%d burst=%d\n",
-               t->ordem, t->nome, t->periodo, t->deadline, t->burst);
+    char nome_saida[64];
+    snprintf(nome_saida, sizeof(nome_saida), "%s_hac2.out", eh_rate ? "rate" : "edf");
+
+    saida = fopen(nome_saida, "w");
+    if (saida == NULL) {
+        fprintf(stderr, "Erro: nao foi possivel criar '%s': %s\n",
+                nome_saida, strerror(errno));
+        return EXIT_ARQUIVO;
     }
 
-    printf("\n");
+    fprintf(saida, "EXECUTION BY %s\n", eh_rate ? "RATE" : "EDF");
+
     for (int t = 0; t < tempo_total; t++) {
         checa_deadlines(t);
         checa_chegadas(t);
 
         int idx = escolhe_prontas_rate();
-        if (idx == -1) {
-            printf("t=%d: CPU ociosa\n", t);
-            continue;
+        Task *escolhido = (idx == -1) ? NULL : prontas[idx].task;
+
+        if (!bloco_ativo) {
+            bloco_task = escolhido;
+            bloco_inicio = t;
+            bloco_ativo = 1;
+        } else if (bloco_task != escolhido) {
+            fecha_bloco(t, bloco_task == NULL ? NULL : "H");
+            bloco_task = escolhido;
+            bloco_inicio = t;
         }
 
-        Instancia *inst = &prontas[idx];
-        printf("t=%d: executa %s (burst_restante %d -> %d)\n",
-               t, inst->task->nome, inst->burst_restante, inst->burst_restante - 1);
+        if (escolhido != NULL) {
+            Instancia *inst = &prontas[idx];
+            inst->burst_restante--;
 
-        inst->burst_restante--;
+            if (inst->burst_restante == 0) {
+                inst->task->completadas++;
+                prontas[idx] = prontas[num_prontas - 1];
+                num_prontas--;
 
-        if (inst->burst_restante == 0) {
-            inst->task->completadas++;
-            prontas[idx] = prontas[num_prontas - 1];
-            num_prontas--;
+                fecha_bloco(t + 1, "F");
+                bloco_ativo = 0;
+            }
         }
     }
 
-    printf("\n");
+    fecha_bloco(tempo_total, NULL);
+
+    fprintf(saida, "LOST DEADLINES\n");
     for (int i = 0; i < num_tasks; i++) {
-        printf("%s: completadas=%d perdidas=%d\n",
-               tasks[i].nome, tasks[i].completadas, tasks[i].perdidas);
+        fprintf(saida, "[%s] %d\n", tasks[i].nome, tasks[i].perdidas);
     }
+
+    fprintf(saida, "COMPLETE EXECUTION\n");
+    for (int i = 0; i < num_tasks; i++) {
+        fprintf(saida, "[%s] %d\n", tasks[i].nome, tasks[i].completadas);
+    }
+
+    fprintf(saida, "KILLED\n");
+    for (int i = 0; i < num_tasks; i++) {
+        fprintf(saida, "[%s] %d\n", tasks[i].nome, tasks[i].killed);
+    }
+
+    fclose(saida);
 
     return 0;
 }
